@@ -1,8 +1,25 @@
 //IMPORTING ALL NECCESSARY NODE MODULES
 const express = require('express');
 const cors = require('cors');
-const dotenv = require('dotenv');
+const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
+
+// IMPORTING DB MODELS
+const User = require('./models/userModel');
+
+// IMPORTING CREDENTIALS AS ENV VARIABLES
+const CLUSTER_URI = process.env.DATABASE_URI;
+
+// CONNECTING TO MONGO DB CLUSTER
+mongoose.connect(CLUSTER_URI)
+.then(() => {
+    console.log('Successfuly connected.')
+})
+.catch((err) => {
+    console.error(err)
+})
+
+const db = mongoose.connection
 
 // DEFINING SERVER
 const app = express();
