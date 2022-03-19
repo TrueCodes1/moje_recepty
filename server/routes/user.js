@@ -8,7 +8,7 @@ const UserRouter = express.Router();
 const userControllers = require('../controllers/user');
 
 // ASSING SPECIFIC FUNCTIONS TO SPECIFIC ROUTES
-UserRouter.get('/', userControllers.createUser)
+UserRouter.post('/create-user', userControllers.createUser)
 
 // EXPORTING ROUTER
 module.exports = UserRouter

@@ -7,9 +7,6 @@ const mongoose = require('mongoose');
 // IMPORTING MAIN ROUTER
 const MainRouter = require('./router');
 
-// IMPORTING DB MODELS
-const User = require('./models/userModel');
-
 // IMPORTING CREDENTIALS AS ENV VARIABLES
 const CLUSTER_URI = process.env.DATABASE_URI;
 
@@ -29,9 +26,7 @@ const db = mongoose.connection
 const app = express();
 
 app.use(cors());
-app.get('/', () => {
-    console.log('happy')
-});
+app.use('/', MainRouter);
 
 //DEFINING PORT NUMBER; IF CANNOT BE ACCESSED VIA ENV VARIABLE, SET TO 4000
 const port = process.env.PORT || 4000;

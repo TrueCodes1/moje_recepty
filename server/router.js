@@ -8,7 +8,7 @@ const MainRouter = express.Router();
 const UserRouter = require('./routes/user');
 
 // ASSIGNING GENERAL ROUTES TO ITS SPECIFIC ROUTERS
-MainRouter.use('/', UserRouter);
+MainRouter.use('/users', UserRouter);
 
 // EXPORTING ROUTER
 module.exports = MainRouter;
