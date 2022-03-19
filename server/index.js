@@ -4,6 +4,9 @@ const cors = require('cors');
 const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
 
+// IMPORTING MAIN ROUTER
+const MainRouter = require('./router');
+
 // IMPORTING DB MODELS
 const User = require('./models/userModel');
 
@@ -16,6 +19,7 @@ mongoose.connect(CLUSTER_URI)
     console.log('Successfuly connected.')
 })
 .catch((err) => {
+    console.log('Not connected')
     console.error(err)
 })
 
@@ -25,7 +29,9 @@ const db = mongoose.connection
 const app = express();
 
 app.use(cors());
-
+app.get('/', () => {
+    console.log('happy')
+});
 
 //DEFINING PORT NUMBER; IF CANNOT BE ACCESSED VIA ENV VARIABLE, SET TO 4000
 const port = process.env.PORT || 4000;
