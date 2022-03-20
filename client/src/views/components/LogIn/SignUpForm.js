@@ -90,11 +90,12 @@ const Input = styled.input`
     padding-left: 15px;
     width: 100%;
     outline: none;
-    border: none;
+    border: 1px solid transparent;
     background: ${colors.primary};
     color: white;
     margin: 15px 0;
     border-radius: 5px;
+    user-select: text;
     box-shadow: 10px 10px 20px ${colors.primaryDarkShadow},
                 -5px -5px 20px ${colors.primaryLightShadow},
                 -2px -2px 5px ${colors.primaryDarkSmoothShadow},
@@ -103,6 +104,10 @@ const Input = styled.input`
                 inset -5px -5px 10px ${colors.primaryLightShadow};
     opacity: 0;
 
+    &.wrong {
+        border: 1px solid red;
+        transition: .25s ease
+    }
     &.submit {
         cursor: pointer;
         box-shadow: 10px 10px 20px ${colors.primaryDarkShadow},
@@ -168,6 +173,7 @@ const CheckboxParent = styled.div`
     width: 100%;
     padding: 10px;
     margin-top: 10px;
+    border: 1px solid transparent;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -183,6 +189,10 @@ const CheckboxParent = styled.div`
             animation: 1 .5s ${InputFlyingOut};
             animation-delay: .1s;
         }
+    }
+    &.wrong {
+        border: 1px solid red;
+        transition: .25s ease
     }
 `
 
@@ -356,7 +366,12 @@ export default function SignUpForm() {
             ANIMATIONS PART ENDS HERE
         ***********************************/
 
-        $(SSubmit).on('click', () => {
+        $(SSubmit).on('click', async () => {
+
+            for (let element of [SName, SSurname, SEmail, SPassword, SPassword2, SCheckbox]) {
+                $(element).removeClass('wrong');
+            }
+
             let formValue = {
                 firstName: $(SName).val(),
                 lastName: $(SSurname).val(),
@@ -365,8 +380,35 @@ export default function SignUpForm() {
                 password2: $(SPassword2).val(),
                 checkbox: $('#checkbox-checkbox').prop('checked')
             }
-            let afterCheck = validation(formValue);
+
+            let afterCheck = await validation(formValue);
             
+            if (afterCheck === true) {
+                fetch('http://localhost:4000/users/create-user', {
+                    method: 'POST', 
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(
+                        formValue
+                    )
+                })
+            } else {
+                let pairs = {
+                    firstName: 'name-input',
+                    lastName: 'surname-input',
+                    email: 'email-input',
+                    password: 'password-input',
+                    checkbox: 'checkbox'
+                }
+
+                for (let key of Object.keys(afterCheck)) {
+                    $(`#${pairs[key]}`).addClass('wrong')
+                }
+
+            }
+
         })
 
     })
