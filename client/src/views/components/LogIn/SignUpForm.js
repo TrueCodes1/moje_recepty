@@ -6,6 +6,9 @@ import $ from 'jquery';
 import colors from '../../styles/Colors.js';
 import '../../styles/fonts/fonts.css';
 
+//IMPORTING FUNCTIONS (SCRIPTS)
+const validation = require('../../functions/LogIn/signUpValidation');
+
 //ANIMATIONS
 const InputFlyingIn = keyframes`
     0% {
@@ -195,7 +198,7 @@ const Label = styled.label`
     margin-left: 20px;
 `
 
-const LinkToSignUp = styled.input`
+const LinkToSignUp = styled.div`
     font-family: Poppins;
     font-size: 20px;
     font-weight: 400;
@@ -309,6 +312,10 @@ export default function SignUpForm() {
         const SSubmit = $('#submit-sign-up');
         const LogInButton = $('#to-log-in');
 
+        /**********************************
+            ANIMATIONS PART STARTS HERE
+        ***********************************/
+
         $(LogInButton).on('click', () => {
             setComing('');
             setLeaving('leaving');
@@ -344,6 +351,24 @@ export default function SignUpForm() {
                 $(LForm).addClass('shown');
             }, 800)
         })
+        
+        /**********************************
+            ANIMATIONS PART ENDS HERE
+        ***********************************/
+
+        $(SSubmit).on('click', () => {
+            let formValue = {
+                firstName: $(SName).val(),
+                lastName: $(SSurname).val(),
+                email: $(SEmail).val(),
+                password: $(SPassword).val(),
+                password2: $(SPassword2).val(),
+                checkbox: $('#checkbox-checkbox').prop('checked')
+            }
+            let afterCheck = validation(formValue);
+            
+        })
+
     })
 
   return (
@@ -356,13 +381,15 @@ export default function SignUpForm() {
                 <Input type='password' placeholder='Heslo' id='password-input' className={`password ${coming} ${leaving}`}/>
                 <Input type='password' placeholder='Zopakuj heslo' id='password-repeat-input' className={`password-2 ${coming} ${leaving}`}/>
                 <CheckboxParent id='checkbox' className={`checkbox ${coming} ${leaving}`}>
-                    <Checkbox type='checkbox'/>
+                    <Checkbox type='checkbox' id='checkbox-checkbox'/>
                     <Label>
                         súhlasím s podmienkami používania a so spracovaním osobných údajov
                     </Label>
                 </CheckboxParent>
                 <BottomDiv>
-                    <LinkToSignUp type='submit' value='Registruj ma!' id='submit-sign-up' className={`submit ${coming} ${leaving}`}/>
+                    <LinkToSignUp id='submit-sign-up' className={`submit ${coming} ${leaving}`}>
+                        Registruj ma!
+                    </LinkToSignUp>
                     <LinkToLogIn id='to-log-in' className={`to-log-in ${coming} ${leaving}`}>
                         prihlásenie
                     </LinkToLogIn>

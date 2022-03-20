@@ -26,6 +26,7 @@ const db = mongoose.connection
 const app = express();
 
 app.use(cors());
+// REDIRECTING ALL REQUESTS TO THE MAIN ROUTER
 app.use('/', MainRouter);
 
 //DEFINING PORT NUMBER; IF CANNOT BE ACCESSED VIA ENV VARIABLE, SET TO 4000
