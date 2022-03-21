@@ -10,18 +10,6 @@ const MainRouter = require('./router');
 // IMPORTING CREDENTIALS AS ENV VARIABLES
 const CLUSTER_URI = process.env.DATABASE_URI;
 
-// CONNECTING TO MONGO DB CLUSTER
-mongoose.connect(CLUSTER_URI)
-.then(() => {
-    console.log('Successfuly connected.')
-})
-.catch((err) => {
-    console.log('Not connected')
-    console.error(err)
-})
-
-const db = mongoose.connection
-
 // DEFINING SERVER
 const app = express();
 
@@ -32,6 +20,18 @@ app.use('/', MainRouter);
 //DEFINING PORT NUMBER; IF CANNOT BE ACCESSED VIA ENV VARIABLE, SET TO 4000
 const port = process.env.PORT || 4000;
 
-app.listen(port, () => {
-    console.log(`Listening on port ${port}.`)
+// CONNECTING TO MONGO DB CLUSTER
+mongoose.connect(CLUSTER_URI)
+.then(() => {
+    console.log('Successfuly connected to database.');
+    // AS THE RESULT OF CONNECTION TO THE DATABASE THE APPLICATION STARTS TO LISTEN ON GIVEN PORT
+    app.listen(port, () => {
+        console.log(`Listening on port ${port}.`)
+    })
 })
+.catch((err) => {
+    console.log('Not connected')
+    console.error(err)
+})
+
+const db = mongoose.connection
