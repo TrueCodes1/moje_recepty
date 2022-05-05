@@ -37,3 +37,7 @@ ___
 ___
 
 🔥 Watch me on other repos as well:
+
+- [Sigred](https://github.com/TrueCodes1/sigred_public.git)
+- [True Codes -  portfolio](https://github.com/TrueCodes1/true_codes.git)
+- [Meine Verben](https://github.com/TrueCodes1/meine_verbs.git)
