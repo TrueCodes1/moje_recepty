@@ -38,6 +38,6 @@ ___
 
 🔥 Watch me on other repos as well:
 
-- [Sigred](https://github.com/TrueCodes1/sigred_public.git)
-- [True Codes -  portfolio](https://github.com/TrueCodes1/true_codes.git)
-- [Meine Verben](https://github.com/TrueCodes1/meine_verbs.git)
+- [Sigred](https://github.com/TrueCodes1/sigred_public.git) or [web](https://www.sigred.org)
+- [True Codes -  portfolio](https://github.com/TrueCodes1/true_codes.git) or [web](https://www.truecodes.dev)
+- [Meine Verben](https://github.com/TrueCodes1/meine_verbs.git) or web (soon 🕚)
