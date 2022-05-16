@@ -14,17 +14,21 @@ ____
 
 ### 📱 Front-end
 
-- HTML
-
-- CSS
-
-- JavaScript
+- React
 
 ### 🎨 Design
 
+- Figma
 
 ### 🔧 Back-end
 
+- Node.js
+
+- EXPRESS
+
+- MongoDB
+
+- Heroku
 
 ____
 
