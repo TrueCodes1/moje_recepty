@@ -14,6 +14,11 @@ ____
 
 ### 📱 Front-end
 
+- HTML
+
+- CSS
+
+- JavaScript
 
 ### 🎨 Design
 
