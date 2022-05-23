@@ -50,8 +50,7 @@ ___
 
 ## 🚀 What drove me? 
 
-Moje Recepty was the idea that sparked in the mind of my girlfriend when she realised she lacked space to store her fancy recipes.
-
+Moje Recepty was the idea that sparked in the mind of my girlfriend when she realised she lacked space to store her fancy recipes. Back then, the intention was to create a web app for personal use only, but after some time we realized this might be used by the whole family which means around 10 active users. Thinking about this project as a small social network, we decided to add some typical features, e.g. follow, like, share or comment. 
 ___
 
 🔥 Watch me on other repos as well:
